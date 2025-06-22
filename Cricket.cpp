@@ -74,12 +74,25 @@ class Innings {
                 runBalls.clear();
                 int sum = 0;
                 for (int i = 0; i < runBallsNeeded; i++) {
-                    int maxRun = std::min(6, totalRuns - sum - (runBallsNeeded - i- 1));
-                    int run = (maxRun > 0) ? (rand() % (maxRun + 1)) : 0;
-                    runBalls.push_back(std::to_string(run));
-                    sum += run;
+                    std::vector<std::string> validOptions;
+                    
+                    for (const std::string &run : runOptions) {
+                        int val = std::stoi(run);
+                        int minRemaining = runBallsNeeded - i - 1;
+                        if (sum + val + minRemaining <= totalRuns) {
+                            validOptions.push_back(run);
+                        }
+                    }
+
+                    if (validOptions.empty()) break;
+
+                    std::string chosen = validOptions[rand() % validOptions.size()];
+                    runBalls.push_back(chosen);
+                    sum += std::stoi(chosen);
+
                 }
-                if (sum == totalRuns) break;
+                if (sum == totalRuns && runBalls.size() == runBallsNeeded) 
+                    break;
             }
 
             //assign positions for run balls
@@ -132,7 +145,7 @@ class Innings {
         void displayCommentary() const {
 
             
-            std::cout << "\n -----------------------------Ball by Ball Commentary------------------------------\n";
+            std::cout << "\n -----------------------------------/Ball by Ball Commentary/-----------------------------------\n";
             for (const BallEvent &event : events) {
                 event.display();
             }
@@ -152,16 +165,21 @@ class Innings {
 int main() {
     
     int runs, wickets;
-    std::cout << "**************************Cricket Playthrough************************** \n";
+    std::cout << "**************************Cricket Playthrough (5 Overs Max) ********************************** \n";
     std::cout << "Enter the Number of Runs: \n";
     std::cin >> runs;
 
     std::cout << "Enter the Number of Wickets: \n";
     std::cin >> wickets;
 
+    if (wickets > 10) {
+        std::cout << "You cant enter more than 10 Wickets";
+        return 1;
+    }
+
     Innings innings(runs, wickets);
     innings.simulate();
     innings.displayCommentary();
-    std::cout << "************************************************************************ \n";
+    std::cout << "************************************************************************************************ \n";
     return 0;
 }
