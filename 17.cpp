@@ -4,6 +4,7 @@
 #include <random>     // for std::default_random_engine
 #include <ctime> 
 #include <stack>
+#include <windows.h>
 
 typedef std::vector<std::pair<std::string, std::pair<std::string, int>>> Taas;
 
@@ -67,6 +68,7 @@ class Cards{
             //              <<top.second.second<<std::endl;
             //     Stack.pop();
             // }
+            std::vector<int> Score;
 
             for (int i = 0; i<2 ; i++){
                 for(int i=0; i<=players ; i++) {
@@ -75,7 +77,7 @@ class Cards{
 
                     std::cout <<"Player"<<i+1 << " :"<< top.second.second<<std::endl;
 
-                    std::vector<int> Score;
+                    
                     
                     Score.push_back(top.second.second);
 
@@ -87,6 +89,9 @@ class Cards{
                 }
             }
             
+            for (int score : Score) {
+                std::cout << score <<std::endl;
+            }
 
 
 
@@ -97,20 +102,57 @@ class Cards{
 int main() {
 
     int players;
+    int choice;
+    bool menu = true;
 
+    while(menu){
 
-    std::cout <<"**************************************************Satra (17)********************************************************"<<std::endl;
+        
 
-    std::cout <<"Enter The Number of Players to play with: ";
+        std::cout <<"**************************************************|||||Satra (17)|||||********************************************************"<<std::endl;
 
-    std::cin >> players;
+        std::cout <<"Enter the Choice (1-2): "<<std::endl<<
+                    "1. Play The Game"<<std::endl<<
+                    "2. Quit the Game"<<std::endl;
+        std::cin >> choice;
+        std::cout <<"********************************************************************************************************************"<<std::endl;
 
-    std::cout <<"********************************************************************************************************************"<<std::endl;
+        switch (choice)
+        {
+        case 1:
+            
+            {
+                std::cout <<"Enter The Number of Players to play with: ";
 
-    Cards card1;
-    Taas myDeck = card1.deck();
-    //card1.shuffle(myDeck);
-    card1.Play(card1.shuffle(myDeck), players);
+                std::cin >> players;
+                Cards card1;
+                Taas myDeck = card1.deck();
+                //card1.shuffle(myDeck);
+                card1.Play(card1.shuffle(myDeck), players);
+                break;
+            }
+
+        case 2:
+            {
+                std::cout <<"Thanks For Staying to Play The Game!!! GoodBye"<<std::endl;
+                Sleep(1000);
+                menu=false;
+
+                break;
+            }    
+        
+        default:
+            std::cout <<"You must Select Something like 1 or 2 anything Else than That is a Big NO!!!! NO!!! "<<std::endl;
+            //menu = false;
+            break;
+        }
+            
+
+        std::cout <<"********************************************************************************************************************"<<std::endl;
+
+        
+
+    }
 
 
     return 0;
