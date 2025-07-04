@@ -53,6 +53,7 @@ class CGame {
         void ShowLostLife (void);
         void ShowLost (void);
         void ShowExit (void);
+        void Show (void);
 
         //Process the turn
         void ProcessSplash(void);

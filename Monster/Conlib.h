@@ -37,7 +37,7 @@
 
     /* Output methods */
     void Clear (void);
-    void OutputString (char * String);
+    void OutputString (std::string);
 
     /* Input methods */
     void Read (char * Buffer, DWORD BufferSize);

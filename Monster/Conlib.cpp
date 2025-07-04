@@ -1,4 +1,5 @@
 #include"Conlib.h"
+#include<iostream>
 
 Conlib::Conlib (){
     m_Screen = GetStdHandle (STD_OUTPUT_HANDLE);
@@ -86,9 +87,9 @@ void Conlib::SetPosition (COORD Position){
 
 //sets string to the screen
 
-void Conlib::OutputString (char *String){
+void Conlib::OutputString (std::string Smth){
     DWORD Written ;
-    WriteConsole (m_Screen, String, strlen (String), &Written, NULL);
+    WriteConsoleA(m_Screen, Smth.c_str(), Smth.length(), &Written, NULL);
 }
 
 //key from keyboard
