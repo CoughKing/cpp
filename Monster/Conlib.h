@@ -5,6 +5,7 @@
 
  /* Windows standard header file */
 #include <windows.h>
+#include <iostream>
 
  /* ConLib color codes */
  enum ConColor
@@ -32,7 +33,7 @@
     /* Set attributes */
     void SetBackgroundColor (WORD Color);
     void SetTextColor (WORD Color);
-    void SetTitle (char * Title);
+    void SetTitle (std::string);
     void SetPosition (COORD Position);
 
     /* Output methods */
