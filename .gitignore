@@ -1,3 +1,11 @@
 .vscode
 *.exe
 *.obj
+.vs
+Dependencies
+Debug
+.json
+
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
