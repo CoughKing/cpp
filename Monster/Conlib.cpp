@@ -62,8 +62,8 @@ void Conlib::SetTextColor (WORD Color){
 
 //windows title
 
-void Conlib::SetTitle (char * Title){
-    SetConsoleTitleA(Title);
+void Conlib::SetTitle (std::string Title){
+    SetConsoleTitleA(Title.c_str());
 }
 
 //clear the Screen
